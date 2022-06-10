@@ -4,7 +4,6 @@ class CreateActivities < ActiveRecord::Migration[6.1]
       t.string :to_do
       t.string :location
       t.string :duration
-      t.integer :calender_id
     end
   end
 end

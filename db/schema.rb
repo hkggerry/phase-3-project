@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_10_221318) do
+ActiveRecord::Schema.define(version: 2022_06_10_231304) do
 
   create_table "activities", force: :cascade do |t|
     t.string "to_do"
@@ -23,10 +23,9 @@ ActiveRecord::Schema.define(version: 2022_06_10_221318) do
     t.string "day"
   end
 
-  create_table "episodes", force: :cascade do |t|
-    t.integer "season"
-    t.integer "episode"
-    t.string "name"
+  create_table "joins", force: :cascade do |t|
+    t.integer "activity_id"
+    t.integer "calender_id"
   end
 
 end

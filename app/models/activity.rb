@@ -1,3 +1,4 @@
 class Activity < ActiveRecord::Base
-    belongs_to :calender
+    has_many :joins
+    has_many :calenders, through: :joins
   end
