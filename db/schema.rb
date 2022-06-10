@@ -21,12 +21,6 @@ ActiveRecord::Schema.define(version: 2022_06_10_232842) do
     t.string "day"
   end
 
-  create_table "episodes", force: :cascade do |t|
-    t.integer "season"
-    t.integer "episode"
-    t.string "name"
-  end
-
   create_table "joins", force: :cascade do |t|
     t.integer "activity_id"
     t.integer "calender_id"
