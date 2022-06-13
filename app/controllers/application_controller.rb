@@ -8,7 +8,8 @@ class ApplicationController < Sinatra::Base
   
   get "/calenders" do
     calender = Calender.all
-    calender.to_json
+    calender.to_json(include: :activities)
+  
   end
 
   get "/calenders/:id" do

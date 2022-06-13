@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_06_10_232842) do
 
   create_table "activities", force: :cascade do |t|
+    t.string "to_do"
     t.string "location"
     t.string "duration"
   end
@@ -21,10 +22,15 @@ ActiveRecord::Schema.define(version: 2022_06_10_232842) do
     t.string "day"
   end
 
+  create_table "episodes", force: :cascade do |t|
+    t.integer "season"
+    t.integer "episode"
+    t.string "name"
+  end
+
   create_table "joins", force: :cascade do |t|
     t.integer "activity_id"
     t.integer "calender_id"
-    t.string "to_do"
   end
 
 end
