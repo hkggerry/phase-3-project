@@ -31,4 +31,10 @@ class ApplicationController < Sinatra::Base
 )
     activity.to_json
   end
+
+  delete '/activities/:id' do
+    activity = Activity.find(params[:id])
+    activity.destroy
+    activity.to_json
+  end 
 end
