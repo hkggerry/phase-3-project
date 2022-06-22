@@ -7,14 +7,21 @@ import Tuesday from "./Schedule/Tuesday";
 
 
 function App() {
-  const [schedule, setSchedule] = useState([])
+ 
   const [activity, setActivity] = useState([])
+  const [dayOne, setDayOne] = useState([])
   const [dayTwo, setDayTwo] = useState([])
 
   useEffect(()=>{
-    fetch('http://localhost:9292/calenders')
+    fetch('http://localhost:9292/calenders/1')
     .then(r => r.json())
-    .then (data=> setSchedule(data))
+    .then (dayOne=> setDayOne(dayOne))
+  }, [])
+
+  useEffect(()=>{
+    fetch('http://localhost:9292/calenders/2')
+    .then(r => r.json())
+    .then (dayTwo=> setDayTwo(dayTwo))
   }, [])
 
   useEffect(()=>{
@@ -27,11 +34,7 @@ function App() {
     setActivity([...activity, newActivity]);
   }
 
-  useEffect(()=>{
-    fetch('http://localhost:9292/calenders/2')
-    .then(r => r.json())
-    .then (dayTwo=> setDayTwo(dayTwo))
-  }, [])
+  
 
   return (
     <div>
@@ -46,7 +49,7 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/monday">
-          <Monday schedule={schedule} activity={activity} onAddActivity={handleAddActivity}/>
+          <Monday dayOne={dayOne} dayOneAct={dayOne.activities} onAddActivity={handleAddActivity}/>
           </Route>
           <Route exact path="/Tuesday">
           <Tuesday dayTwo={dayTwo} dayTwoAct={dayTwo.activities}/>

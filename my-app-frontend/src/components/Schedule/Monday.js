@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-function Monday({schedule, activity, onAddActivity}){
+function Monday({dayOne, dayOneAct, onAddActivity}){
 
-  const mondaySchedule = schedule.map(data =><div key={data.id}><h3>{data.activity}</h3></div>)
-  const mondayActivity = activity.map(data2 =><div key={data2.id}><ul><li>{data2.to_do}</li>{data2.location}/&nbsp;{data2.duration}</ul></div>)
+  const oneActivities = dayOneAct.map(data =><div key={data.id}><ul><li>{data.to_do}</li>{data.location}/&nbsp;{data.duration}</ul></div>)
 
     const [add, setAdd] = useState({
       to_do: "",
@@ -12,8 +11,6 @@ function Monday({schedule, activity, onAddActivity}){
       calender_id: ""
     });
   
-    
-
     function handleSubmit(e) {
         e.preventDefault();
         const newActivity = {
@@ -43,9 +40,9 @@ function Monday({schedule, activity, onAddActivity}){
     return(
         <div>
             <center>
-            {mondaySchedule[0]}
+            <h3>{dayOne.day}</h3>
             </center>
-            {mondayActivity}
+            {oneActivities}
            
             <div>Add Activities</div>
              <form onSubmit={handleSubmit}>&nbsp;

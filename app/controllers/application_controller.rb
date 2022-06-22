@@ -17,11 +17,6 @@ class ApplicationController < Sinatra::Base
     calender.to_json(include: :activities)
   end
 
-  get "/calenders/2" do
-    calender = Calender.find(params[:id])
-    calender.to_json(include: :activities)
-  end
-
   get "/activities" do
     activity = Activity.all
     activity.to_json()
