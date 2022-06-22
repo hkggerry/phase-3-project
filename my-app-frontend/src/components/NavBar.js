@@ -14,7 +14,7 @@ function NavBar() {
     return(
         <div>
             <NavLink to="/" exact style={linkStyles} activeStyle={{background:"khaki"}}>Home</NavLink>
-            <NavLink to="/monday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Monday</NavLink>
+            <NavLink to="/Monday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Monday</NavLink>
             <NavLink to="/Tuesday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Tuesday</NavLink>
             <NavLink to="/Wednesday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Wednesday</NavLink>
             <NavLink to="/Thursday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Thursday</NavLink>

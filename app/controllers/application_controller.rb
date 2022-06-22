@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
   
   get "/calenders" do
     calender = Calender.all
-    calender.to_json(include: {activities: {only: [:to_do, :location, :duration]}})
+    calender.to_json(include: :activities)
   
   end
 
@@ -17,4 +17,23 @@ class ApplicationController < Sinatra::Base
     calender.to_json(include: :activities)
   end
 
+  get "/calenders/2" do
+    calender = Calender.find(params[:id])
+    calender.to_json(include: :activities)
+  end
+
+  get "/activities" do
+    activity = Activity.all
+    activity.to_json()
+  end
+
+  post '/activities' do
+    activity = Activity.create(
+      to_do: params[:to_do],
+      calender_id: params[:calender_id],
+      location: params[:location],
+      duration: params[:duration]
+)
+    activity.to_json
+  end
 end
