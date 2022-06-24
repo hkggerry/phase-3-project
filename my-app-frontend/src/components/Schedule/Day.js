@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
 
-function Day({toogle, setToogle}){
+function Day({toggle, setToggle}){
 
     const [day, setDay] = useState("")
-    let id = useParams().id;
+    const id = useParams().id;
     
 
     useEffect(()=>{
         fetch(`http://localhost:9292/calenders/${id}`)
         .then(r => r.json())
-        .then (day=> {setDay(day.activities); console.log(day)})
-      }, [toogle])
+        .then (day=> setDay(day.activities))
+      }, [toggle])
 
     const activity = day? day.map(data =><div key={data.id}><ul><li>{data.to_do}</li>{data.location}/&nbsp;{data.duration}&nbsp;</ul></div>) : null
-
- 
 
     const [add, setAdd] = useState({
       to_do: "",
@@ -38,9 +36,8 @@ function Day({toogle, setToogle}){
           body: JSON.stringify(newActivity),
         })
           .then((r) => r.json())
-          .then((newData) => {
-            // onAddActivity(newData)
-            setToogle(!toogle)
+          .then(() => {
+            setToggle(!toggle)
             setAdd("")
           });
       }

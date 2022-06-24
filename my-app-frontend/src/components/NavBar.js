@@ -14,13 +14,13 @@ function NavBar() {
     return(
         <div>
             <NavLink to="/" exact style={linkStyles} activeStyle={{background:"khaki"}}>Home</NavLink>
-            <NavLink to="/Monday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Monday</NavLink>
-            <NavLink to="/Tuesday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Tuesday</NavLink>
-            <NavLink to="/Wednesday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Wednesday</NavLink>
-            <NavLink to="/Thursday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Thursday</NavLink>
-            <NavLink to="/Friday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Friday</NavLink>
-            <NavLink to="/Saturday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Saturday</NavLink>
-            <NavLink to="/Sunday" exact style={linkStyles} activeStyle={{background:"khaki"}}>Sunday</NavLink>
+            <NavLink to="/Day/1" exact style={linkStyles} activeStyle={{background:"khaki"}}>Monday</NavLink>
+            <NavLink to="/Day/2" exact style={linkStyles} activeStyle={{background:"khaki"}}>Tuesday</NavLink>
+            <NavLink to="/Day/3" exact style={linkStyles} activeStyle={{background:"khaki"}}>Wednesday</NavLink>
+            <NavLink to="/Day/4" exact style={linkStyles} activeStyle={{background:"khaki"}}>Thursday</NavLink>
+            <NavLink to="/Day/5" exact style={linkStyles} activeStyle={{background:"khaki"}}>Friday</NavLink>
+            <NavLink to="/Day/6" exact style={linkStyles} activeStyle={{background:"khaki"}}>Saturday</NavLink>
+            <NavLink to="/Day/7" exact style={linkStyles} activeStyle={{background:"khaki"}}>Sunday</NavLink>
         </div>
     )
 }
