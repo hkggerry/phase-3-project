@@ -1,9 +1,20 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
 
-function Monday({dayOne, dayOneAct, onAddActivity, onDeleteActivity, toogle, setToogle}){
+function Day({toogle, setToogle}){
 
-  const oneActivities = dayOneAct? dayOneAct.map(data =><div key={data.id}><ul><li>{data.to_do}</li>{data.location}/&nbsp;{data.duration}&nbsp;<button onClick={handleDeleteClick}>X</button></ul></div>) : null
-  const deleteId = dayOneAct? dayOneAct.map(data => (data.id)): null
+    const [day, setDay] = useState("")
+    let id = useParams().id;
+    
+
+    useEffect(()=>{
+        fetch(`http://localhost:9292/calenders/${id}`)
+        .then(r => r.json())
+        .then (day=> {setDay(day.activities); console.log(day)})
+      }, [toogle])
+
+    const activity = day? day.map(data =><div key={data.id}><ul><li>{data.to_do}</li>{data.location}/&nbsp;{data.duration}&nbsp;</ul></div>) : null
+
  
 
     const [add, setAdd] = useState({
@@ -12,7 +23,7 @@ function Monday({dayOne, dayOneAct, onAddActivity, onDeleteActivity, toogle, set
       duration: "",
       calender_id: []
     });
-  
+
     function handleSubmit(e) {
         e.preventDefault();
         const newActivity = {
@@ -28,33 +39,25 @@ function Monday({dayOne, dayOneAct, onAddActivity, onDeleteActivity, toogle, set
         })
           .then((r) => r.json())
           .then((newData) => {
-            onAddActivity(newData)
+            // onAddActivity(newData)
             setToogle(!toogle)
             setAdd("")
           });
       }
 
-    const handleChange = (e) => {
-      setAdd({
-        ...add,
-        [e.target.name] : e.target.value
-      }); 
-    }
+      const handleChange = (e) => {
+        setAdd({
+          ...add,
+          [e.target.name] : e.target.value
+        }); 
+      }
 
-    function handleDeleteClick(){
-      fetch(`http://localhost:9292/activities/${dayOneAct.id}`, {
-        method: "DELETE",
-      })
-      .then((r) => r.json())
-      .then(() => onDeleteActivity(dayOneAct.id))
-    }
-
-    return(
+      return(
         <div>
             <center>
-            <h3>{dayOne.day}</h3>
+            {/* <h3>{day.day}</h3> */}
             </center>
-            {oneActivities}
+            {activity}
 
             <div>Add Activities</div>
              <form onSubmit={handleSubmit}>&nbsp;
@@ -71,4 +74,4 @@ function Monday({dayOne, dayOneAct, onAddActivity, onDeleteActivity, toogle, set
         </div>
     )}
 
-export default Monday;
+export default Day;

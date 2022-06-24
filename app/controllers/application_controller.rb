@@ -22,13 +22,17 @@ class ApplicationController < Sinatra::Base
     activity.to_json()
   end
 
+  get "/activities/:id" do
+    activity = Activity.find(params[:id])
+    activity.to_json()
+  end
+
   post '/activities' do
     activity = Activity.create(
       to_do: params[:to_do],
       calender_id: params[:calender_id],
       location: params[:location],
-      duration: params[:duration]
-)
+      duration: params[:duration])
     activity.to_json
   end
 
