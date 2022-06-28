@@ -21,6 +21,7 @@ function NavBar() {
             <NavLink to="/Day/5" exact style={linkStyles} activeStyle={{background:"khaki"}}>Friday</NavLink>
             <NavLink to="/Day/6" exact style={linkStyles} activeStyle={{background:"khaki"}}>Saturday</NavLink>
             <NavLink to="/Day/7" exact style={linkStyles} activeStyle={{background:"khaki"}}>Sunday</NavLink>
+            <NavLink to="/Edit" exact style={linkStyles} activeStyle={{background:"khaki"}}>Edit Activities</NavLink>
         </div>
     )
 }

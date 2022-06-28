@@ -41,4 +41,15 @@ class ApplicationController < Sinatra::Base
     activity.destroy
     activity.to_json
   end 
+
+  patch '/activities/:id' do
+    activity = Activities.find(params[:id])
+    activity.update(
+      to_do: params[:to_do],
+      calender_id: params[:calender_id],
+      location: params[:location],
+      duration: params[:duration])
+    activity.to_json
+  end
+  
 end

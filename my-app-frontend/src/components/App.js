@@ -1,47 +1,48 @@
-import React, {useState, useEffect} from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import NavBar from "./NavBar"
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import NavBar from "./NavBar";
 import Home from "./Home";
 import Day from "./Schedule/Day";
-
+import EditActivities from "./Schedule/EditActivities";
 
 function App() {
- 
-  const [activity, setActivity] = useState("")
-  const [toggle, setToggle] = useState(true)
+  const [activities, setActivities] = useState([]);
+  const [toggle, setToggle] = useState(true);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetch("http://localhost:9292/activities")
-    .then(r => r.json())
-    .then (activity=> {setActivity(activity)})
-  })
+      .then((r) => r.json())
+      .then((activities) => setActivities(activities));
+  }, [activities]);
 
-  // function handleDeleteActivity(id){
-  //   const updatedActivities = activity.filter((act) => act.id !== id)
-  //   console.log(updatedActivities)
-  //   setActivity(updatedActivities)
-  // }
-
-  
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((act) => act.id !== id));
+  }
 
   return (
     <div>
       <center>
-      <h1>📚 My Schedule List ⚽</h1>
+        <h1>📚 My Schedule List ⚽</h1>
       </center>
       <hr />
       <BrowserRouter>
-      <NavBar />
+        <NavBar />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path='/Day/:id'>
-          <Day toggle={toggle} setToggle={setToggle} />
+          <Route exact path="/Day/:id">
+            <Day
+              toggle={toggle}
+              setToggle={setToggle}
+              onDeleteActivity={handleDeleteActivity}
+            />
+          </Route>
+          <Route exact path="/Edit">
+            <EditActivities activities={activities} />
           </Route>
         </Switch>
-        </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }
