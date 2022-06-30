@@ -23,7 +23,7 @@ function EditActivities() {
             <ul>
               <li>{data.to_do}</li>
               {data.location}/&nbsp;{data.duration}&nbsp;
-              <button onClick={(e) => handleEditClick(data.id, e)}>Edit</button>
+              <button onClick={() => handleEditClick(data.id)}>Edit</button>
             </ul>
           </div>
         );
@@ -37,19 +37,20 @@ function EditActivities() {
     calender_id: editActivity.calender_id,
   };
 
-  function handleEditClick(activityId, e) {
-    e.preventDefault();
-    const clickActivities = activities.filter(
+  function handleEditClick(activityId) {
+    // debugger;
+    const clickActivities = activities.find(
       (activity) => activity.id === activityId
-    )[0];
+    );
     console.log(clickActivities);
     setEditActivity(clickActivities);
   }
 
-  function handleSubmit(activityId, e) {
+  function handleSubmit(e) {
     e.preventDefault();
+    // debugger;
     console.log("update!");
-    fetch(`http://localhost:9292/activities/${activityId}`, {
+    fetch(`http://localhost:9292/activities/${editActivity.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +58,7 @@ function EditActivities() {
       body: JSON.stringify(updatedActivity),
     })
       .then((r) => r.json())
-      .then(() => console.log({}));
+      .then((data) => console.log(data));
   }
 
   return (

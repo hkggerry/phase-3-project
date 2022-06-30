@@ -6,7 +6,9 @@ function EditForm({ handleSubmit, editActivity, setEditActivity }) {
       &nbsp;
       <label htmlFor="to_do">Activity</label>
       <input
-        onChange={(e) => setEditActivity(e.target.value)}
+        onChange={(e) =>
+          setEditActivity({ ...editActivity, [e.target.name]: e.target.value })
+        }
         type="text"
         name="to_do"
         value={editActivity.to_do}
@@ -14,7 +16,9 @@ function EditForm({ handleSubmit, editActivity, setEditActivity }) {
       <br />
       <label htmlFor="location">Location</label>
       <input
-        onChange={(e) => setEditActivity(e.target.value)}
+        onChange={(e) =>
+          setEditActivity({ ...editActivity, [e.target.name]: e.target.value })
+        }
         type="text"
         name="location"
         value={editActivity.location}
@@ -22,7 +26,9 @@ function EditForm({ handleSubmit, editActivity, setEditActivity }) {
       <br />
       <label htmlFor="duration">Duration</label>
       <input
-        onChange={(e) => setEditActivity(e.target.value)}
+        onChange={(e) =>
+          setEditActivity({ ...editActivity, [e.target.name]: e.target.value })
+        }
         type="text"
         name="duration"
         value={editActivity.duration}
@@ -30,7 +36,9 @@ function EditForm({ handleSubmit, editActivity, setEditActivity }) {
       <br />
       <label htmlFor="calender_id">Calender_ID</label>
       <input
-        onChange={(e) => setEditActivity(e.target.value)}
+        onChange={(e) =>
+          setEditActivity({ ...editActivity, [e.target.name]: e.target.value })
+        }
         type="number"
         name="calender_id"
         value={editActivity.calender_id}
