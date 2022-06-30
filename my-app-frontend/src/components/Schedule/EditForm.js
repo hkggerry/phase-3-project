@@ -1,12 +1,12 @@
 import React from "react";
 
-function EditForm({ handleChange, handleSubmit, editActivity }) {
+function EditForm({ handleSubmit, editActivity, setEditActivity }) {
   return (
     <form onSubmit={handleSubmit}>
       &nbsp;
       <label htmlFor="to_do">Activity</label>
       <input
-        onChange={handleChange}
+        onChange={(e) => setEditActivity(e.target.value)}
         type="text"
         name="to_do"
         value={editActivity.to_do}
@@ -14,7 +14,7 @@ function EditForm({ handleChange, handleSubmit, editActivity }) {
       <br />
       <label htmlFor="location">Location</label>
       <input
-        onChange={handleChange}
+        onChange={(e) => setEditActivity(e.target.value)}
         type="text"
         name="location"
         value={editActivity.location}
@@ -22,7 +22,7 @@ function EditForm({ handleChange, handleSubmit, editActivity }) {
       <br />
       <label htmlFor="duration">Duration</label>
       <input
-        onChange={handleChange}
+        onChange={(e) => setEditActivity(e.target.value)}
         type="text"
         name="duration"
         value={editActivity.duration}
@@ -30,7 +30,7 @@ function EditForm({ handleChange, handleSubmit, editActivity }) {
       <br />
       <label htmlFor="calender_id">Calender_ID</label>
       <input
-        onChange={handleChange}
+        onChange={(e) => setEditActivity(e.target.value)}
         type="number"
         name="calender_id"
         value={editActivity.calender_id}

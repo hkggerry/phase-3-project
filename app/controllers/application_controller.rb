@@ -43,7 +43,7 @@ class ApplicationController < Sinatra::Base
   end 
 
   patch '/activities/:id' do
-    activity = Activities.find(params[:id])
+    activity = Activity.find(params[:id])
     activity.update(
       to_do: params[:to_do],
       calender_id: params[:calender_id],

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -9,11 +9,11 @@ function App() {
   const [activities, setActivities] = useState([]);
   const [toggle, setToggle] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:9292/activities")
-      .then((r) => r.json())
-      .then((activities) => setActivities(activities));
-  }, [activities]);
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/activities")
+  //     .then((r) => r.json())
+  //     .then((activities) => console.log(activities));
+  // }, []);
 
   function handleDeleteActivity(id) {
     setActivities(activities.filter((act) => act.id !== id));
@@ -39,7 +39,7 @@ function App() {
             />
           </Route>
           <Route exact path="/Edit">
-            <EditActivities activities={activities} />
+            <EditActivities />
           </Route>
         </Switch>
       </BrowserRouter>

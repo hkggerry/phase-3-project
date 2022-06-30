@@ -9,7 +9,7 @@ function Day({ toggle, setToggle, onDeleteActivity }) {
     fetch(`http://localhost:9292/calenders/${id}`)
       .then((r) => r.json())
       .then((day) => setDay(day.activities));
-  }, [id]);
+  }, [toggle]);
 
   const activities = day
     ? day.map((data) => (
@@ -27,7 +27,7 @@ function Day({ toggle, setToggle, onDeleteActivity }) {
     to_do: "",
     location: "",
     duration: "",
-    calender_id: [],
+    calender_id: "",
   });
 
   function handleSubmit(e) {
@@ -46,12 +46,15 @@ function Day({ toggle, setToggle, onDeleteActivity }) {
       .then((r) => r.json())
       .then(() => {
         setToggle(!toggle);
-        setAdd("");
+        setAdd({});
       });
   }
 
   const handleChange = (e) => {
-    setAdd({ ...add, [e.target.name]: e.target.value });
+    const updatedAdd = Object.assign({}, add);
+    updatedAdd[e.target.name] = e.target.value;
+    setAdd(updatedAdd);
+    //setAdd({ ...add, [e.target.name]: e.target.value });
   };
 
   function handleDeleteClick(activityId, e) {
@@ -63,6 +66,7 @@ function Day({ toggle, setToggle, onDeleteActivity }) {
       .then((r) => r.json())
       .then(() => {
         onDeleteActivity(activityId);
+        setToggle(!toggle);
         console.log(activityId);
       });
   }

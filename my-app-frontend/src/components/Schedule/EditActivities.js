@@ -3,7 +3,12 @@ import EditForm from "./EditForm";
 
 function EditActivities() {
   const [activities, setActivities] = useState([]);
-  const [editActivity, setEditActivity] = useState({});
+  const [editActivity, setEditActivity] = useState({
+    to_do: "",
+    location: "",
+    duration: "",
+    calender_id: "",
+  });
 
   useEffect(() => {
     fetch("http://localhost:9292/activities")
@@ -25,6 +30,13 @@ function EditActivities() {
       })
     : null;
 
+  const updatedActivity = {
+    to_do: editActivity.to_do,
+    location: editActivity.location,
+    duration: editActivity.duration,
+    calender_id: editActivity.calender_id,
+  };
+
   function handleEditClick(activityId, e) {
     e.preventDefault();
     const clickActivities = activities.filter(
@@ -34,28 +46,18 @@ function EditActivities() {
     setEditActivity(clickActivities);
   }
 
-  function handleChange(e) {
-    console.log("change");
-    setEditActivity(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  function handleSubmit(activityId, e) {
     e.preventDefault();
-    const updatedActivity = {
-      to_do: activities.to_do,
-      location: activities.location,
-      duration: activities.duration,
-      calender_id: activities.calender_id,
-    };
-    // fetch(`http://localhost:9292/activities/${activityId}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(updatedActivity),
-    // });
-    //   .then((r) => r.json())
-    //   .then(()=> activityId)
+    console.log("update!");
+    fetch(`http://localhost:9292/activities/${activityId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedActivity),
+    })
+      .then((r) => r.json())
+      .then(() => console.log({}));
   }
 
   return (
@@ -63,9 +65,9 @@ function EditActivities() {
       <div>Update Activities</div>
       {allActivities}
       <EditForm
-        handleChange={handleChange}
         handleSubmit={handleSubmit}
         editActivity={editActivity}
+        setEditActivity={setEditActivity}
       />
     </div>
   );
