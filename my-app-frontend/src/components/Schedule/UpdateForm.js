@@ -1,6 +1,6 @@
 import React from "react";
 
-function EditForm({ handleSubmit, editActivity, setEditActivity }) {
+function UpdateForm({ handleSubmit, editActivity, setEditActivity }) {
   return (
     <form onSubmit={handleSubmit}>
       &nbsp;
@@ -49,4 +49,4 @@ function EditForm({ handleSubmit, editActivity, setEditActivity }) {
   );
 }
 
-export default EditForm;
+export default UpdateForm;

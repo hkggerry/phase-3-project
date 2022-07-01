@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import EditForm from "./EditForm";
+import UpdateForm from "./UpdateForm";
 
-function EditActivities() {
+function UpdateActivity() {
   const [activities, setActivities] = useState([]);
+  const [toggle, setToggle] = useState(true);
   const [editActivity, setEditActivity] = useState({
     to_do: "",
     location: "",
@@ -14,7 +15,7 @@ function EditActivities() {
     fetch("http://localhost:9292/activities")
       .then((r) => r.json())
       .then((activities) => setActivities(activities));
-  }, []);
+  }, [toggle]);
 
   const allActivities = activities
     ? activities.map((data) => {
@@ -58,14 +59,17 @@ function EditActivities() {
       body: JSON.stringify(updatedActivity),
     })
       .then((r) => r.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setEditActivity(data);
+        setToggle(!toggle);
+      });
   }
 
   return (
     <div>
-      <div>Update Activities</div>
+      <h3>Update Activities</h3>
       {allActivities}
-      <EditForm
+      <UpdateForm
         handleSubmit={handleSubmit}
         editActivity={editActivity}
         setEditActivity={setEditActivity}
@@ -74,4 +78,4 @@ function EditActivities() {
   );
 }
 
-export default EditActivities;
+export default UpdateActivity;
